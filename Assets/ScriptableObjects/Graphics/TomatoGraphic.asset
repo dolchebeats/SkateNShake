@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e4e3899c26cb40489b4e30d7cfabc5c, type: 3}
+  m_Name: TomatoGraphic
+  m_EditorClassIdentifier: 
+  label: TOMATO GRAPHIC
+  image: {fileID: 21300000, guid: d5cfd6625bc0eaa418f63c62a5338c23, type: 3}
+  cost: 2000
+  type: graphic
+  rgb: {r: 0.18244925, g: 0.7913917, b: 0.9433962, a: 1}
+  texture: {fileID: 2800000, guid: 67c7470821952df44b1833b5a49ad646, type: 3}

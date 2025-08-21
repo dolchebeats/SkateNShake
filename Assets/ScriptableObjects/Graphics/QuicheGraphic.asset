@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e4e3899c26cb40489b4e30d7cfabc5c, type: 3}
+  m_Name: QuicheGraphic
+  m_EditorClassIdentifier: 
+  label: QUICHE GRAPHIC
+  image: {fileID: 21300000, guid: 93b51fd18d9fb074ebbab75e3329c584, type: 3}
+  cost: 2000
+  type: graphic
+  rgb: {r: 0.3490566, g: 0.17510559, b: 0.0049394714, a: 1}
+  texture: {fileID: 2800000, guid: f8a214101b2208948ad7fe465bd37a3d, type: 3}
