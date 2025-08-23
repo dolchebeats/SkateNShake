@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,14 +17,32 @@ public class GameManager : MonoBehaviour {
 
         Instance = this;
     }
+    public event Action<int> OnCoinsChanged;
+    public event Action<int> OnScoreChanged;
     public int coins;
-
     public int distance;
+    public int trickScore=0;
+    public int score;
     public bool isAlive;
     public  bool isGameStarted;
     
-    public  bool isInControl = false; 
+    public  bool isInControl = false;
 
+    public int Coins {
+        get => coins;
+        set {
+            coins = value;
+            OnCoinsChanged?.Invoke(coins);
+        }
+    }
+
+    public int Score {
+        get => score;
+        set {
+            score = value;
+            OnScoreChanged?.Invoke(score);
+        }
+    }
     private void Start() {
         SaveManager.Load();
         UIManager.Instance.Initialize();
@@ -44,10 +63,8 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Update() {
-
-
         distance = Mathf.RoundToInt(transform.position.z) / 10;
-
+        Score = distance + trickScore;
 
     }
 
@@ -55,7 +72,9 @@ public class GameManager : MonoBehaviour {
        // UIManager.Instance.Initialize();
 
     //}   
-
+    public void AddScore (int amount) {
+        trickScore += amount;
+    }
     public void OnCollisionEnter(Collision collider) {
         if ((collider.gameObject.tag == "Obstacle") && isAlive) {
             PlayerDeath();
@@ -68,14 +87,14 @@ public class GameManager : MonoBehaviour {
         isAlive = false;
         
         SaveManager.saveData.wallet+=coins;
-        SaveManager.saveData.totalDistance += distance;
-        if (distance > SaveManager.saveData.highScore) {
-            SaveManager.saveData.highScore = distance;
+        SaveManager.saveData.totalScore += score;
+        if (score > SaveManager.saveData.highScore) {
+            SaveManager.saveData.highScore = score;
             UIManager.Instance.newSticker.SetActive(true);
         }
-        SaveManager.saveData.levelDistance+= distance;
-        while (SaveManager.saveData.levelDistance >= 1000) {
-            SaveManager.saveData.levelDistance -= 1000;
+        SaveManager.saveData.levelScore+= score;
+        while (SaveManager.saveData.levelScore >= 1000) {
+            SaveManager.saveData.levelScore -= 1000;
             SaveManager.saveData.level++;
             SaveManager.saveData.newLevel=true;
         }

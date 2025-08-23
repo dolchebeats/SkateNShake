@@ -6262,6 +6262,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104457300}
   m_CullTransparentMesh: 1
+--- !u!1 &1134979333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1134979334}
+  - component: {fileID: 1134979335}
+  m_Layer: 5
+  m_Name: TrickSplash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1134979334
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134979333}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1140666988}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -500}
+  m_SizeDelta: {x: 1280, y: 2770}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1134979335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134979333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5693d8d02558e4193c61a93e35fdb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splashPrefab: {fileID: 8622838747613163240, guid: 9def0181a51fa3048854dc9e0dea51fa, type: 3}
+  maxActiveSplashes: 3
+  splashDuration: 1.5
+  verticalSpacing: 40
 --- !u!1 &1140666987
 GameObject:
   m_ObjectHideFlags: 0
@@ -6293,6 +6345,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1691585221}
+  - {fileID: 1134979334}
   - {fileID: 1425633376}
   - {fileID: 1651595644}
   - {fileID: 1141109059}
@@ -7856,6 +7909,7 @@ GameObject:
   - component: {fileID: 1612559760}
   - component: {fileID: 1612559759}
   - component: {fileID: 1612559758}
+  - component: {fileID: 1612559761}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -7880,6 +7934,7 @@ MonoBehaviour:
   vSpeed: 0
   jump: {x: 0, y: 1, z: 0}
   jumpForce: 12
+  isGrinding: 0
   recentJump: 0
   isKicking: 0
   rb: {fileID: 0}
@@ -7983,6 +8038,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coins: 0
   distance: 0
+  trickScore: 0
+  score: 0
   isAlive: 0
   isGameStarted: 0
   isInControl: 0
@@ -8051,6 +8108,266 @@ MonoBehaviour:
   timerJumpBoost: 0
   timerCoin3x: 0
   timerStopwatch: 0
+--- !u!114 &1612559761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612559750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62ecbd358207f444cac90a9e0accc7f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trickDatabase:
+  - name: Ollie
+    level: 0
+    weight: 0
+    score: 10
+    animatorTrigger: Jump
+  - name: Pop Shuv
+    level: 3
+    weight: 0
+    score: 15
+    animatorTrigger: Pop Shuv
+  - name: Kickflip
+    level: 4
+    weight: 0
+    score: 20
+    animatorTrigger: Kickflip
+  - name: Front Shuv
+    level: 3
+    weight: 0
+    score: 15
+    animatorTrigger: FS Shuv
+  - name: Heelflip
+    level: 5
+    weight: 0
+    score: 20
+    animatorTrigger: Heelflip
+  - name: Nollie
+    level: 1
+    weight: 0
+    score: 15
+    animatorTrigger: Nollie
+  - name: Nollie Flip
+    level: 8
+    weight: 0
+    score: 20
+    animatorTrigger: Nollie Flip
+  - name: Nollie Heel
+    level: 8
+    weight: 0
+    score: 20
+    animatorTrigger: Nollie Heel
+  - name: 50-50
+    level: 0
+    weight: 10
+    score: 15
+    animatorTrigger: 50-50
+  - name: 5-0
+    level: 6
+    weight: 5
+    score: 20
+    animatorTrigger: 5-0
+  - name: Nosegrind
+    level: 7
+    weight: 5
+    score: 20
+    animatorTrigger: Nosegrind
+  - name: Crooked
+    level: 9
+    weight: 3
+    score: 25
+    animatorTrigger: leftCrooked
+  - name: Crooked
+    level: 9
+    weight: 3
+    score: 25
+    animatorTrigger: rightCrooked
+  - name: Salad
+    level: 10
+    weight: 3
+    score: 25
+    animatorTrigger: Salad
+  - name: Suski
+    level: 10
+    weight: 3
+    score: 25
+    animatorTrigger: Suski
+  - name: Feeble
+    level: 11
+    weight: 2
+    score: 30
+    animatorTrigger: Feeble
+  - name: Smith
+    level: 11
+    weight: 2
+    score: 30
+    animatorTrigger: Smith
+  - name: Willy
+    level: 12
+    weight: 2
+    score: 30
+    animatorTrigger: Willy
+  - name: OverWilly
+    level: 12
+    weight: 2
+    score: 30
+    animatorTrigger: OverWilly
+  - name: Frontside 180
+    level: 2
+    weight: 0
+    score: 15
+    animatorTrigger: front180
+  - name: Backside 180
+    level: 2
+    weight: 0
+    score: 15
+    animatorTrigger: back180
+  comboDatabase:
+  - swipeTrick: Ollie
+    spinTrick: Frontside 180
+    requiresFakie: 0
+    resultTrick: Frontside 180
+  - swipeTrick: Ollie
+    spinTrick: Backside 180
+    requiresFakie: 0
+    resultTrick: Backside 180
+  - swipeTrick: Kickflip
+    spinTrick: Frontside 180
+    requiresFakie: 0
+    resultTrick: Frontside Flip
+  - swipeTrick: Kickflip
+    spinTrick: Backside 180
+    requiresFakie: 0
+    resultTrick: Backside Flip
+  - swipeTrick: Heelflip
+    spinTrick: Frontside 180
+    requiresFakie: 0
+    resultTrick: Frontside Heel
+  - swipeTrick: Heelflip
+    spinTrick: Backside 180
+    requiresFakie: 0
+    resultTrick: Backside Heel
+  - swipeTrick: Pop Shuv
+    spinTrick: Backside 180
+    requiresFakie: 0
+    resultTrick: Big Spin
+  - swipeTrick: Front Shuv
+    spinTrick: Frontside 180
+    requiresFakie: 0
+    resultTrick: Frontside Big Spin
+  - swipeTrick: FS Shuv
+    spinTrick: Frontside 180
+    requiresFakie: 0
+    resultTrick: Frontside Big Spin
+  - swipeTrick: Nollie
+    spinTrick: Frontside 180
+    requiresFakie: 0
+    resultTrick: Nollie Front 180
+  - swipeTrick: Nollie
+    spinTrick: Backside 180
+    requiresFakie: 0
+    resultTrick: Nollie Back 180
+  - swipeTrick: Nollie Flip
+    spinTrick: Frontside 180
+    requiresFakie: 0
+    resultTrick: Nollie Frontside Flip
+  - swipeTrick: Nollie Flip
+    spinTrick: Backside 180
+    requiresFakie: 0
+    resultTrick: Nollie Backside Flip
+  - swipeTrick: Nollie Heel
+    spinTrick: Backside 180
+    requiresFakie: 0
+    resultTrick: Nollie Backside Heel
+  - swipeTrick: Pop Shuv
+    spinTrick: Frontside 180
+    requiresFakie: 0
+    resultTrick: Body Varial
+  - swipeTrick: Front Shuv
+    spinTrick: Backside 180
+    requiresFakie: 0
+    resultTrick: Body Varial
+  - swipeTrick: Nollie
+    spinTrick: N/A
+    requiresFakie: 1
+    resultTrick: Switch Ollie
+  - swipeTrick: Nollie Flip
+    spinTrick: N/A
+    requiresFakie: 1
+    resultTrick: Switch Kickflip
+  - swipeTrick: Nollie Heel
+    spinTrick: N/A
+    requiresFakie: 1
+    resultTrick: Switch Heelflip
+  - swipeTrick: Ollie
+    spinTrick: Frontside 180
+    requiresFakie: 1
+    resultTrick: Front Half-Cab
+  - swipeTrick: Ollie
+    spinTrick: Backside 180
+    requiresFakie: 1
+    resultTrick: Half-Cab
+  - swipeTrick: Kickflip
+    spinTrick: Frontside 180
+    requiresFakie: 1
+    resultTrick: Front Half-Cab Flip
+  - swipeTrick: Kickflip
+    spinTrick: Backside 180
+    requiresFakie: 1
+    resultTrick: Half-Cab Flip
+  - swipeTrick: Heelflip
+    spinTrick: Frontside 180
+    requiresFakie: 1
+    resultTrick: Front Half-Cab Heel
+  - swipeTrick: Heelflip
+    spinTrick: Backside 180
+    requiresFakie: 1
+    resultTrick: Half-Cab Heel
+  - swipeTrick: Pop Shuv
+    spinTrick: Frontside 180
+    requiresFakie: 1
+    resultTrick: Switch Body Varial
+  - swipeTrick: Pop Shuv
+    spinTrick: Backside 180
+    requiresFakie: 1
+    resultTrick: Fakie Big Spin
+  - swipeTrick: Front Shuv
+    spinTrick: Frontside 180
+    requiresFakie: 1
+    resultTrick: Fakie Frontside Big Spin
+  - swipeTrick: Front Shuv
+    spinTrick: Backside 180
+    requiresFakie: 1
+    resultTrick: Switch Body Varial
+  - swipeTrick: Nollie
+    spinTrick: Frontside 180
+    requiresFakie: 1
+    resultTrick: Switch Front 180
+  - swipeTrick: Nollie
+    spinTrick: Backside 180
+    requiresFakie: 1
+    resultTrick: Switch Back 180
+  - swipeTrick: Nollie Flip
+    spinTrick: Frontside 180
+    requiresFakie: 1
+    resultTrick: Switch Frontside Flip
+  - swipeTrick: Nollie Flip
+    spinTrick: Backside 180
+    requiresFakie: 1
+    resultTrick: Switch Backside Flip
+  - swipeTrick: Nollie Heel
+    spinTrick: Frontside 180
+    requiresFakie: 1
+    resultTrick: Switch Frontside Heel
+  - swipeTrick: Nollie Heel
+    spinTrick: Backside 180
+    requiresFakie: 1
+    resultTrick: Switch Backside Heel
+  isFakie: 0
 --- !u!1 &1620258297 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1436386963665655694, guid: 713d54c42b5c8c74caf26e5af5b0003d, type: 3}

@@ -17,7 +17,7 @@ public class PowerupManager : MonoBehaviour
 
     public void OnTriggerEnter(Collider item) {
         if (item.gameObject.tag == "Coin") {
-            GameManager.Instance.coins = GameManager.Instance.coins + 1 * coinMultiplier;
+            GameManager.Instance.Coins = GameManager.Instance.coins + 1 * coinMultiplier;
             Destroy(item.gameObject);
             AudioManager.Instance.PlaySound("Coin");
 

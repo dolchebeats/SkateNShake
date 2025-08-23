@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationManager : MonoBehaviour
-{
+public class AnimationManager : MonoBehaviour {
     public static AnimationManager Instance { get; private set; }
     private void Awake() {
         if (Instance != null && Instance != this) {
@@ -23,12 +23,13 @@ public class AnimationManager : MonoBehaviour
 
 
     public void PlayerDeath() {
-        Destroy(skateAnim);
+        skateAnim.enabled = false;
         skateboard.AddComponent<BoxCollider>();
-        skateboard.AddComponent<Rigidbody>(); 
-        Destroy(fryAnim);
+        skateboard.AddComponent<Rigidbody>();
+        fryAnim.enabled = false;
         fries.AddComponent<Rigidbody>();
         fries.AddComponent<BoxCollider>();
+        modelAnim.enabled = false;
         for (int i = 0; i < fries.transform.childCount; i++) {
             fries.transform.GetChild(i).gameObject.AddComponent<Rigidbody>();
             fries.transform.GetChild(i).gameObject.AddComponent<BoxCollider>();
@@ -56,113 +57,28 @@ public class AnimationManager : MonoBehaviour
     }
 
 
-    public void ChooseJumpTrick() {
+    public void ChooseJumpTrick(string trick) {
 
-        switch(SwipeManager.CurrentSwipe) {
-            case Swipe.Up:
-                JumpAnimation("Jump");
-                    break;
-            case Swipe.Left:
-                if (SaveManager.saveData.level >= 3)
-                    JumpAnimation("Pop Shuv");
-                else
-                    JumpAnimation("Jump");
-                break;
-            case Swipe.UpLeft:
-                if (SaveManager.saveData.level >= 4)
-                    JumpAnimation("Kickflip");
-                else
-                    JumpAnimation("Jump");
-                break;
-            case Swipe.Right:
-                if (SaveManager.saveData.level >= 3)
-                    JumpAnimation("FS Shuv");
-                else
-                    JumpAnimation("Jump");
-                break;
-            case Swipe.UpRight:
-                if (SaveManager.saveData.level >= 5)
-                    JumpAnimation("Heelflip");
-                else
-                    JumpAnimation("Jump");
-                break;
-            case Swipe.Down:
-                if (SaveManager.saveData.level >= 1)
-                    JumpAnimation("Nollie");
-                else
-                    JumpAnimation("Jump");
-                break;                      
-            case Swipe.DownLeft:
-                if (SaveManager.saveData.level >= 8)
-                    JumpAnimation("Nollie Flip");
-                else
-                    JumpAnimation("Jump");
-                break;
-            case Swipe.DownRight:
-                if (SaveManager.saveData.level >= 8)
-                    JumpAnimation("Nollie Heel");
-                else
-                    JumpAnimation("Jump");
-                break;                        
-            default:
-                JumpAnimation("Jump");
-                break;
+        if (string.IsNullOrEmpty(trick))
+            return;
 
+        skateAnim.SetTrigger(trick); // assumes trigger names match trick strings
+        fryAnim.SetTrigger("Jump");
 
-        }
     }
     public void JumpAnimation(string trick) {
         skateAnim.SetTrigger(trick);
         fryAnim.SetTrigger("Jump");
     }
 
-    public void GrindSurface() {
+
+    public void PlayGrind(string trick) {
         fryAnim.SetTrigger("Grind");
-        int grindChance = Random.Range(5, Mathf.Clamp(SaveManager.saveData.level+1,5+1,12+1));
-        switch (grindChance) {
-            case 6:
-                skateAnim.SetBool("5-0", true);
-                break;
-            case 7:
-                skateAnim.SetBool("Nosegrind", true);
-                break;
-            case 9:
-                if (Random.Range(0, 2) == 0) {
-                    skateAnim.SetBool("leftCrooked", true);
-                }
-                else {
-                    skateAnim.SetBool("rightCrooked", true);
-                }
-                break;
-            case 10:
-                if (Random.Range(0, 2) == 0) {
-                    skateAnim.SetBool("Salad", true);
-                }
-                else {
-                    skateAnim.SetBool("Suski", true);
-                }
-                break;
-            case 11:
-                if (Random.Range(0, 2) == 0) {
-                    skateAnim.SetBool("Feeble", true);
-                }
-                else {
-                    skateAnim.SetBool("Smith", true);
-                }
-                break;
-            case 12:
-                if (Random.Range(0, 2) == 0) {
-                    skateAnim.SetBool("Willy", true);
-                }
-                else {
-                    skateAnim.SetBool("OverWilly", true);
-                }
-                break;
-                default:
-                skateAnim.SetBool("50-50", true); 
-                break;
+        skateAnim.SetBool(trick, true);
 
+    }
 
-        }
+    public void PlaySpin(string trick) {
+        modelAnim.SetTrigger(trick);
     }
 }

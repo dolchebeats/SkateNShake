@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour {
 
     Vector3 oldPos;
     bool land=true;
-    bool isGrinding;
+    public bool isGrinding;
     public bool recentJump;
     public  bool isKicking;
 
@@ -74,6 +74,14 @@ public class PlayerMovement : MonoBehaviour {
             
         }
     }
+    public void Jump() {
+        EndGrind();
+        isKicking = false;
+        StartCoroutine(RecentJump());
+        rb.constraints = RigidbodyConstraints.None;
+        rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+        land = false;
+    }
     void Update() {
 
         ProcessInputs();
@@ -97,33 +105,9 @@ public class PlayerMovement : MonoBehaviour {
             transform.eulerAngles = new Vector3(0, hInput * 10f/5f, 0);
         }
 
-        if (GameManager.Instance.isGameStarted) {
-            if (SwipeManager.CurrentSwipe!=Swipe.None && (isGrounded() || isGrinding || isKicking)) {
-                EndGrind();
-                isKicking = false;
-                StartCoroutine(RecentJump());
-                rb.constraints = RigidbodyConstraints.None;
-                rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-                AnimationManager.Instance.ChooseJumpTrick();
-                AudioManager.Instance.PlaySound("Jump");
-                if (PowerupManager.Instance.hasJumpBoost)
-                    AudioManager.Instance.PlaySound("Boing");
-                land = false;
-            }
-
-
-             
-        }
 
         if (recentJump && Mathf.Abs(hInput) > 0.1f) {
-            if (hInput > 0 && SaveManager.saveData.level >= 2) {
-                AnimationManager.Instance.modelAnim.SetTrigger("back180");
-            }
-            else if (hInput < 0 && SaveManager.saveData.level >= 2) {
-                AnimationManager.Instance.modelAnim.SetTrigger("front180");
-
-            }
-            //AnimationManager.Instance.modelRotation %= 360;
+            TrickManager.Instance.TrySpin(hInput);
             recentJump = false;
         }
 
@@ -192,8 +176,8 @@ public class PlayerMovement : MonoBehaviour {
         rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX;
         transform.position = new Vector3(surface.transform.position.x, surface.transform.position.y, transform.position.z); 
         transform.eulerAngles = new Vector3 (transform.eulerAngles.x,0,transform.eulerAngles.z);
-        AnimationManager.Instance.GrindSurface();
-        
+        TrickManager.Instance.ChooseGrind(); // <-- new
+
     }
     void EndGrind() {
         GameManager.Instance.isInControl = true;

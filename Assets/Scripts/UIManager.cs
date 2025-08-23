@@ -39,16 +39,34 @@ public class UIManager : MonoBehaviour
         startScore.text = "COINS: " + SaveManager.saveData.wallet + " COINS\nHIGH SCORE: " + SaveManager.saveData.highScore + "m";
         startPanel.SetActive(true);
         stats.text = null;
-        levelBar.value = SaveManager.saveData.levelDistance;
+        levelBar.value = SaveManager.saveData.levelScore;
         levelBarText.text = "LEVEL " + SaveManager.saveData.level;
     }
+    private void OnEnable() {
+        GameManager.Instance.OnCoinsChanged += UpdateCoins;
+        GameManager.Instance.OnScoreChanged += UpdateDistance;
 
-    private void Update() {
-        stats.text = "COINS: " + GameManager.Instance.coins + "\nSCORE: " + GameManager.Instance.distance + "m" + "\nHIGH SCORE: " + SaveManager.saveData.highScore + "m";
+    }
+
+    private void OnDisable() {
+        if (GameManager.Instance == null) return;
+        GameManager.Instance.OnCoinsChanged -= UpdateCoins;
+        GameManager.Instance.OnScoreChanged -= UpdateDistance;
+
+    }
+    private void UpdateCoins(int coins) {
+        RefreshStats();
+    }
+
+    private void UpdateDistance(int distance) {
+        RefreshStats();
+    }
+    private void RefreshStats() {
+        stats.text = "COINS: " + GameManager.Instance.coins + "\nSCORE: " + GameManager.Instance.score + "m" + "\nHIGH SCORE: " + SaveManager.saveData.highScore + "m";
     }
 
     public void PlayerDeath(int distance) {
-        endScore.text = "SCORE: " + distance + "m\nHIGH SCORE: " + SaveManager.saveData.highScore + "m";
+        endScore.text = "SCORE: " + GameManager.Instance.score + "m\nHIGH SCORE: " + SaveManager.saveData.highScore + "m";
         gameplayPanel.SetActive(false);
         gameOverPanel.SetActive(true);
     }

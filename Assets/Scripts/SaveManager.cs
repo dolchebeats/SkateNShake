@@ -50,8 +50,8 @@ public class SaveData {
     public int wallet;
     public int highScore;
     public int level;
-    public int levelDistance;
-    public int totalDistance;
+    public int levelScore;
+    public int totalScore;
 
     public bool hasPlayed;
     public bool newLevel;
@@ -72,8 +72,8 @@ public class SaveData {
         wallet = 0;
         highScore = 0;
         level = 1;
-        levelDistance = 0;
-        totalDistance = 0;
+        levelScore = 0;
+        totalScore = 0;
 
 
         hasPlayed = false;
