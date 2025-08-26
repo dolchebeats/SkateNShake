@@ -93,14 +93,14 @@ public class GameManager : MonoBehaviour {
             UIManager.Instance.newSticker.SetActive(true);
         }
         SaveManager.saveData.levelScore+= score;
-        while (SaveManager.saveData.levelScore >= 1000) {
-            SaveManager.saveData.levelScore -= 1000;
+        while (SaveManager.saveData.levelScore >= 1000* SaveManager.saveData.level) {
+            SaveManager.saveData.levelScore -= 1000*SaveManager.saveData.level;
             SaveManager.saveData.level++;
             SaveManager.saveData.newLevel=true;
         }
       
         
-
+        GetComponent<BoxCollider>().enabled = false;
         PlayerMovement.Instance.enabled = false;
         PlayerMovement.Instance.rb.useGravity = false;
         PlayerMovement.Instance.rb.isKinematic = true;

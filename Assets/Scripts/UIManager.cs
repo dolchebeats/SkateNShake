@@ -36,10 +36,11 @@ public class UIManager : MonoBehaviour
     public GameObject sliderStopwatch;
 
     public void Initialize() {
-        startScore.text = "COINS: " + SaveManager.saveData.wallet + " COINS\nHIGH SCORE: " + SaveManager.saveData.highScore + "m";
+        startScore.text = "COINS: " + SaveManager.saveData.wallet + " COINS\nHIGH SCORE: " + SaveManager.saveData.highScore;
         startPanel.SetActive(true);
         stats.text = null;
         levelBar.value = SaveManager.saveData.levelScore;
+        levelBar.maxValue = 1000 * SaveManager.saveData.level;
         levelBarText.text = "LEVEL " + SaveManager.saveData.level;
     }
     private void OnEnable() {
@@ -62,11 +63,11 @@ public class UIManager : MonoBehaviour
         RefreshStats();
     }
     private void RefreshStats() {
-        stats.text = "COINS: " + GameManager.Instance.coins + "\nSCORE: " + GameManager.Instance.score + "m" + "\nHIGH SCORE: " + SaveManager.saveData.highScore + "m";
+        stats.text = "COINS: " + GameManager.Instance.coins + "\nSCORE: " + GameManager.Instance.score + "\nHIGH SCORE: " + SaveManager.saveData.highScore;
     }
 
     public void PlayerDeath(int distance) {
-        endScore.text = "SCORE: " + GameManager.Instance.score + "m\nHIGH SCORE: " + SaveManager.saveData.highScore + "m";
+        endScore.text = "SCORE: " + GameManager.Instance.score + "\nHIGH SCORE: " + SaveManager.saveData.highScore;
         gameplayPanel.SetActive(false);
         gameOverPanel.SetActive(true);
     }
@@ -78,7 +79,7 @@ public class UIManager : MonoBehaviour
 
     public void HideShop() {
 
-        startScore.text = "COINS: " + SaveManager.saveData.wallet + " COINS\nHIGH SCORE: " + SaveManager.saveData.highScore + "m";
+        startScore.text = "COINS: " + SaveManager.saveData.wallet + " COINS\nHIGH SCORE: " + SaveManager.saveData.highScore;
         startPanel.SetActive(true);
         shopPanel.SetActive(false);
     }

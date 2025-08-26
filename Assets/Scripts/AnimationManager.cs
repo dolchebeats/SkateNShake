@@ -20,11 +20,20 @@ public class AnimationManager : MonoBehaviour {
     public Animator fryAnim;
     public Animator skateAnim;
 
+    public float normalSpeed = 1f;
+    public float jumpBoostSpeed = 0.5f;
+    private void Update() {
+        // Always keep animators in sync with jump boost state
+        float targetSpeed = PowerupManager.Instance.hasJumpBoost ? jumpBoostSpeed : normalSpeed;
 
-
+        // Apply to the animators that matter
+        modelAnim.speed = targetSpeed;
+        fryAnim.speed = targetSpeed;
+        skateAnim.speed = targetSpeed;
+    }
     public void PlayerDeath() {
         skateAnim.enabled = false;
-        skateboard.AddComponent<BoxCollider>();
+        skateboard.GetComponent<BoxCollider>().enabled=true;
         skateboard.AddComponent<Rigidbody>();
         fryAnim.enabled = false;
         fries.AddComponent<Rigidbody>();
