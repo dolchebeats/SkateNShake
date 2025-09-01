@@ -34,9 +34,10 @@ public class UIManager : MonoBehaviour
     public GameObject sliderJumpBoost;
     public GameObject sliderCoin3x;
     public GameObject sliderStopwatch;
+    public GameObject sliderShield;
 
     public void Initialize() {
-        startScore.text = "COINS: " + SaveManager.saveData.wallet + " COINS\nHIGH SCORE: " + SaveManager.saveData.highScore;
+        startScore.text = "COINS: " + SaveManager.saveData.coins + " COINS\nHIGH SCORE: " + SaveManager.saveData.highScore;
         startPanel.SetActive(true);
         stats.text = null;
         levelBar.value = SaveManager.saveData.levelScore;
@@ -79,7 +80,7 @@ public class UIManager : MonoBehaviour
 
     public void HideShop() {
 
-        startScore.text = "COINS: " + SaveManager.saveData.wallet + " COINS\nHIGH SCORE: " + SaveManager.saveData.highScore;
+        startScore.text = "COINS: " + SaveManager.saveData.coins + " COINS\nHIGH SCORE: " + SaveManager.saveData.highScore;
         startPanel.SetActive(true);
         shopPanel.SetActive(false);
     }

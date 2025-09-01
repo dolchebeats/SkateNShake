@@ -35,6 +35,7 @@ public class AnimationManager : MonoBehaviour {
         skateAnim.enabled = false;
         skateboard.GetComponent<BoxCollider>().enabled=true;
         skateboard.AddComponent<Rigidbody>();
+        skateboard.GetComponent<Rigidbody>().AddForce(Vector3.up * 10f, ForceMode.Impulse);
         fryAnim.enabled = false;
         fries.AddComponent<Rigidbody>();
         fries.AddComponent<BoxCollider>();
@@ -43,6 +44,7 @@ public class AnimationManager : MonoBehaviour {
             fries.transform.GetChild(i).gameObject.AddComponent<Rigidbody>();
             fries.transform.GetChild(i).gameObject.AddComponent<BoxCollider>();
         }
+        
     }
 
     public void StartGame() {

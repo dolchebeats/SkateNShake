@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -33,6 +34,17 @@ public class AudioManager : MonoBehaviour
         }
 
         PlaySound("MainTheme");
+        GetComponent<AudioSettingsUI>().Initialize();
+    }
+
+    public void MuteMusic(bool mute) {
+        sounds[0].source.mute = !mute;
+    }
+
+    public void MuteSounds(bool mute) {
+        for (int i = 1; i < sounds.Length; i++) {
+            sounds[i].source.mute = !mute;
+        }
     }
 
     private void Update() {

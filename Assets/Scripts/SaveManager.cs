@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-//using UnityEngine.Windows;
 
 public static class SaveManager
 {
-    public static string directory = "/SaveData/";
-    public static string fileName = "data.txt";
+    public static string directory = "/data/";
+    public static string fileName = "data.sav";
     public static SaveData saveData;
 
     public static void Save() {
@@ -25,19 +24,10 @@ public static class SaveManager
             string json  = File.ReadAllText(fullPath);
             save = JsonUtility.FromJson<SaveData>(json);
         }
-        if (save.hasPlayed == false) {
-            save = new SaveData();
-        }
-        save.hasPlayed = true;
         saveData = save;
 
     }
 
-    public static void NewSaveData(SaveData save) {
-        
-
-
-    }
 }
 
 public class SaveData {
@@ -47,13 +37,15 @@ public class SaveData {
     public ShopItemSO graphic;
     public List<ShopItemSO> ownedItems;
     
-    public int wallet;
+    public int coins;
+    public int totalWealth;
+    public int longestDistance;
+    public int totalDistance;
     public int highScore;
     public int level;
     public int levelScore;
     public int totalScore;
-
-    public bool hasPlayed;
+    public int tricksDone;
     public bool newLevel;
 
     public SaveData() {
@@ -69,16 +61,16 @@ public class SaveData {
             graphic
         };
 
-        wallet = 0;
+        coins = 0;
+        totalWealth = 0;
+        longestDistance = 0;
+        totalDistance = 0;
         highScore = 0;
         level = 1;
         levelScore = 0;
         totalScore = 0;
-
-
-        hasPlayed = false;
+        tricksDone = 0;
         newLevel = false;
-
   
     }
 

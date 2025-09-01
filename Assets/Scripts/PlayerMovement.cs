@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
     }
     void ProcessInputs() {
-        if (GameManager.Instance.isInControl && !isGrinding) {
+        if (GameManager.Instance.isInControl) {
             float time = 4f * Time.deltaTime;
             int frameTouches = 0;
             foreach (Touch touch in Input.touches) {
@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour {
             float targetInput = SwipeManager.SteeringInput;
             currentSteerInput = Mathf.MoveTowards(currentSteerInput, targetInput, Time.deltaTime * 5f);
             hInput = currentSteerInput;
-            if (isGrinding)
+            if (isGrinding||!GameManager.Instance.isInControl)
                 hInput = 0;
             
         }
@@ -89,18 +89,21 @@ public class PlayerMovement : MonoBehaviour {
         hSpeed = hInput * movementSpeed / 2;
         vSpeed = movementSpeed;
 
-        
+
 
         if (Mathf.Abs(transform.position.x) > 7.5f) {
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, -7.5f, 7.5f), oldPos.y, oldPos.z);
             transform.Translate(new Vector3(0, 0, vSpeed) * Time.deltaTime);
-            
+
         }
-        else if (isGrounded()&&!isGrinding) {
+        else if (isGrinding) {
+            transform.Translate(new Vector3(0, 0, vSpeed) * Time.deltaTime);
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else if (isGrounded()) {
             transform.Translate(new Vector3(hSpeed, 0, vSpeed) * Time.deltaTime);
-            if (GameManager.Instance.isInControl)
-                transform.eulerAngles = new Vector3(0, hInput * 10f, 0);
-        } else {
+            transform.eulerAngles = new Vector3(0, hInput * 10f, 0);
+        }  else { 
             transform.Translate(new Vector3(hSpeed/5, 0, vSpeed) * Time.deltaTime);
             transform.eulerAngles = new Vector3(0, hInput * 10f/5f, 0);
         }
@@ -173,7 +176,7 @@ public class PlayerMovement : MonoBehaviour {
 
         GameManager.Instance.isInControl = false;
         isGrinding = true;
-        rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX;
+        rb.constraints = RigidbodyConstraints.FreezePositionY  | RigidbodyConstraints.FreezePositionX;
         transform.position = new Vector3(surface.transform.position.x, surface.transform.position.y, transform.position.z); 
         transform.eulerAngles = new Vector3 (transform.eulerAngles.x,0,transform.eulerAngles.z);
         TrickManager.Instance.ChooseGrind(); // <-- new

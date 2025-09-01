@@ -41,6 +41,12 @@ public class PowerupManager : MonoBehaviour
             StopCoroutine("JumpBoost");
             StartCoroutine("JumpBoost");
 
+        } else if (item.gameObject.tag == "Shield") {
+            Destroy(item.gameObject);
+            //AudioManager.Instance.PlaySound("Boing");
+            StopCoroutine("Shield");
+            StartCoroutine("Shield");
+
         }
     }
 
@@ -48,9 +54,11 @@ public class PowerupManager : MonoBehaviour
     public bool hasJumpBoost;
     public bool hasCoin3x;
     public bool hasStopwatch;
+    public bool hasShield;
     public int timerJumpBoost;
     public int timerCoin3x;
     public int timerStopwatch;
+    public int timerShield;
 
     public IEnumerator Stopwatch() {
         hasStopwatch = true;
@@ -104,6 +112,23 @@ public class PowerupManager : MonoBehaviour
         PlayerMovement.Instance.jumpForce = 12f;
         UIManager.Instance.sliderJumpBoost.gameObject.SetActive(false);
         hasJumpBoost = false;
+    }
+
+    public IEnumerator Shield() {
+        hasShield = true;
+        GameManager.Instance.isAlive = false;
+        UIManager.Instance.sliderShield.gameObject.GetComponent<Slider>().value = 15;
+        UIManager.Instance.sliderShield.gameObject.SetActive(true);
+        //yield return new WaitForSeconds(15);
+        timerShield = 15;
+        for (int i = 0; i < 15; i++) {
+            yield return new WaitForSeconds(1);
+            timerShield--;
+            UIManager.Instance.sliderShield.gameObject.GetComponent<Slider>().value = timerShield;
+        }
+        GameManager.Instance.isAlive = true;
+        UIManager.Instance.sliderShield.gameObject.SetActive(false);
+        hasShield = false;
     }
 
 }

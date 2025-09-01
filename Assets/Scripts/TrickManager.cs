@@ -73,8 +73,7 @@ public class TrickManager : MonoBehaviour {
 
     // Called by SwipeManager
     private void HandleSwipe(Swipe swipe, Vector2 velocity) {
-        if (!GameManager.Instance.isInControl)
-            return;
+        if (!GameManager.Instance.isGameStarted) return;
         if (PlayerMovement.Instance.isGrounded() || PlayerMovement.Instance.isGrinding || PlayerMovement.Instance.isKicking) {
             if (trickTable.TryGetValue(swipe, out var trickData)) {
                 CurrentTrick = SaveManager.saveData.level >= trickData.requiredLevel
@@ -149,6 +148,7 @@ public class TrickManager : MonoBehaviour {
         if (!GameManager.Instance.isAlive) return;
         GameManager.Instance.AddScore(trick.score);
         TrickSplashUI.Instance.ShowTrick(trick);
+        SaveManager.saveData.tricksDone++;
     }
 
     public void RegisterSwipeTrick(TrickData swipe, bool wasFakie) {

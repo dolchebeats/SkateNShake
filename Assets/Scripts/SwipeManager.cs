@@ -69,7 +69,8 @@ public class SwipeManager : MonoBehaviour {
     private const float FourDirAngle = 0.5f;
     private const float DefaultDPI = 72f;
     private const float DPCMFactor = 2.54f;
-
+    [Tooltip("Minimum swipe speed (inches/second) required to count as a swipe")]
+    [SerializeField] private float minSwipeSpeed = 5f; // tweak as needed
     private static readonly Dictionary<Swipe, Vector2> CardinalDirections = new()
     {
         { Swipe.Up, CardinalDirection.Up },
@@ -115,7 +116,16 @@ public class SwipeManager : MonoBehaviour {
             }
 
             swipeEndTime = Time.time;
-            SwipeVelocity = swipeVector * (swipeEndTime - swipeStartTime);
+            SwipeVelocity = swipeVector / (swipeEndTime - swipeStartTime);
+
+            float speed = SwipeVelocity.magnitude / dpcm; // convert to inches/sec
+
+            if (swipeLength < instance.minSwipeLength || speed < instance.minSwipeSpeed) {
+                swipeDirection = Swipe.None;
+                isTap = true; // this was probably just a tap
+                return;
+            }
+
             swipeDirection = GetSwipeDirection(swipeVector.normalized);
             swipeEnded = true;
 

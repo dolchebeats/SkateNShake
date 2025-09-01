@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour {
     public int coins;
     public int distance;
     public int trickScore=0;
+    public int tricksDone = 0;
     public int score;
     public bool isAlive;
     public  bool isGameStarted;
@@ -86,11 +87,15 @@ public class GameManager : MonoBehaviour {
     public void PlayerDeath() {
         isAlive = false;
         
-        SaveManager.saveData.wallet+=coins;
-        SaveManager.saveData.totalScore += score;
+        SaveManager.saveData.coins+=coins;
+        SaveManager.saveData.totalWealth+=coins;
+        if (distance > SaveManager.saveData.longestDistance) {
+            SaveManager.saveData.longestDistance = distance;
+        }
+        SaveManager.saveData.totalDistance += distance;
         if (score > SaveManager.saveData.highScore) {
             SaveManager.saveData.highScore = score;
-            UIManager.Instance.newSticker.SetActive(true);
+            //UIManager.Instance.newSticker.SetActive(true);
         }
         SaveManager.saveData.levelScore+= score;
         while (SaveManager.saveData.levelScore >= 1000* SaveManager.saveData.level) {
@@ -98,14 +103,16 @@ public class GameManager : MonoBehaviour {
             SaveManager.saveData.level++;
             SaveManager.saveData.newLevel=true;
         }
-      
-        
+        SaveManager.saveData.totalScore += score;
+        SaveManager.saveData.tricksDone += tricksDone;
+
+
         GetComponent<BoxCollider>().enabled = false;
         PlayerMovement.Instance.enabled = false;
         PlayerMovement.Instance.rb.useGravity = false;
         PlayerMovement.Instance.rb.isKinematic = true;
 
-        Time.timeScale = 0.25f;
+        Time.timeScale = 0.5f;
         AnimationManager.Instance.PlayerDeath();
         AudioManager.Instance.PlayerDeath();
         UIManager.Instance.PlayerDeath(distance);

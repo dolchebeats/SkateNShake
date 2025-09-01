@@ -14,6 +14,7 @@ TagManager:
   - JumpBoost
   - Kicker
   - Launch
+  - Shield
   layers:
   - Default
   - TransparentFX

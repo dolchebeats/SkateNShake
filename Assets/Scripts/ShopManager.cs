@@ -46,7 +46,7 @@ public class ShopManager : MonoBehaviour {
         } else {
             graphic.color = new Color(0, 0, 0, 0);
         }
-        walletText.text = "SKATESHOP\nCOINS: " + SaveManager.saveData.wallet;
+        walletText.text = "SKATESHOP\nCOINS: " + SaveManager.saveData.coins;
         List<GameObject> clonedObjs = new List<GameObject>(shopObjects);
         foreach (GameObject obj in clonedObjs) {
             shopObjects.Remove(obj);
@@ -105,8 +105,8 @@ public class ShopManager : MonoBehaviour {
                 SaveManager.saveData.graphic = shopItem;
             }
 
-        } else if (SaveManager.saveData.wallet >= shopItem.cost) {
-            SaveManager.saveData.wallet -= shopItem.cost;
+        } else if (SaveManager.saveData.coins >= shopItem.cost) {
+            SaveManager.saveData.coins -= shopItem.cost;
             SaveManager.saveData.ownedItems.Add(shopItem);
             if (shopItem.type == "deck") {
                 SaveManager.saveData.deck = shopItem;

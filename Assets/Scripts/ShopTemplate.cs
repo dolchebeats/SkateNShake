@@ -16,7 +16,7 @@ public class ShopTemplate : MonoBehaviour
         cost.text = $"{shopItem.cost} COINS";
         titleText.text = $"{shopItem.label}";
         image.sprite = shopItem.image ;
-        if (SaveManager.saveData.wallet >= shopItem.cost) {
+        if (SaveManager.saveData.coins >= shopItem.cost) {
             buyBtn.interactable = true;
         }
         else {

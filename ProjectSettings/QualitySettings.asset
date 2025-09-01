@@ -4,7 +4,7 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 1
+  m_CurrentQuality: 3
   m_QualitySettings:
   - serializedVersion: 4
     name: Very Low
@@ -184,20 +184,20 @@ QualitySettings:
     globalTextureMipmapLimit: 0
     textureMipmapLimitSettings: []
     anisotropicTextures: 1
-    antiAliasing: 0
+    antiAliasing: 2
     softParticles: 0
     softVegetation: 1
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
     useLegacyDetailDistribution: 1
     adaptiveVsync: 0
-    vSyncCount: 1
+    vSyncCount: 0
     realtimeGICPUUsage: 50
     adaptiveVsyncExtraA: 0
     adaptiveVsyncExtraB: 0
     lodBias: 1
     maximumLODLevel: 0
-    enableLODCrossFade: 1
+    enableLODCrossFade: 0
     streamingMipmapsActive: 0
     streamingMipmapsAddAllCameras: 1
     streamingMipmapsMemoryBudget: 512
@@ -209,7 +209,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: 8b7171f2c0ad1e442a2cf23d9c25578c, type: 2}
+    customRenderPipeline: {fileID: 11400000, guid: b7c678c9e24c440418bdd098c45e0127, type: 2}
     terrainQualityOverrides: 0
     terrainPixelError: 1
     terrainDetailDensityScale: 1
@@ -219,10 +219,7 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms:
-    - iPhone
-    - Android
-    - Standalone
+    excludedTargetPlatforms: []
   - serializedVersion: 4
     name: Very High
     pixelLightCount: 3
@@ -335,7 +332,7 @@ QualitySettings:
     - Standalone
   m_TextureMipmapLimitGroupNames: []
   m_PerPlatformDefaultQuality:
-    Android: 1
+    Android: 3
     GameCoreScarlett: 5
     GameCoreXboxOne: 5
     Lumin: 5
@@ -345,9 +342,9 @@ QualitySettings:
     PS5: 5
     Server: 0
     Stadia: 5
-    Standalone: 1
+    Standalone: 3
     WebGL: 3
     Windows Store Apps: 5
     XboxOne: 5
-    iPhone: 1
+    iPhone: 3
     tvOS: 2
