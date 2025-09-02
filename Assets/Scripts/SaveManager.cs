@@ -31,11 +31,11 @@ public static class SaveManager
 }
 
 public class SaveData {
-    public ShopItemSO deck;
-    public ShopItemSO trucks;
-    public ShopItemSO wheels;
-    public ShopItemSO graphic;
-    public List<ShopItemSO> ownedItems;
+    public int deck;
+    public int trucks;
+    public int wheels;
+    public int graphic;
+    public List<int> ownedItems;
     
     public int coins;
     public int totalWealth;
@@ -49,16 +49,16 @@ public class SaveData {
     public bool newLevel;
 
     public SaveData() {
-        deck = ShopManager.Instance.shopItemsSO[0];
-        trucks = ShopManager.Instance.shopItemsSO[1];
-        wheels = ShopManager.Instance.shopItemsSO[2];
-        graphic = ShopManager.Instance.shopItemsSO[3];
-        ownedItems = new List<ShopItemSO>
+        deck = 0;
+        trucks = 1;
+        wheels = 2;
+        graphic = 3;
+        ownedItems = new List<int>
         {
-            deck,
-            trucks,
-            wheels,
-            graphic
+            0,
+            1,
+            2,
+            3
         };
 
         coins = 0;

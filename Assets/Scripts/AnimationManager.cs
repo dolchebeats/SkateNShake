@@ -11,7 +11,7 @@ public class AnimationManager : MonoBehaviour {
 
         Instance = this;
     }
-
+    [SerializeField] private ParticleSystem grindSparks;
     public GameObject skateboard;
     public GameObject fries;
     //public GameObject model;
@@ -65,6 +65,7 @@ public class AnimationManager : MonoBehaviour {
         skateAnim.SetBool("Smith", false);
         skateAnim.SetBool("Willy", false);
         skateAnim.SetBool("OverWilly", false);
+        grindSparks.Stop();
     }
 
 
@@ -86,6 +87,7 @@ public class AnimationManager : MonoBehaviour {
     public void PlayGrind(string trick) {
         fryAnim.SetTrigger("Grind");
         skateAnim.SetBool(trick, true);
+        grindSparks.Play();
 
     }
 

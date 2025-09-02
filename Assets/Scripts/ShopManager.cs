@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -37,11 +38,11 @@ public class ShopManager : MonoBehaviour {
         wheelStock.transform.parent.parent.gameObject.SetActive(true);
         graphicStock.transform.parent.parent.gameObject.SetActive(true);
 
-        deck.color = SaveManager.saveData.deck.rgb;
-        trucks.color = SaveManager.saveData.trucks.rgb;
-        wheels.color = SaveManager.saveData.wheels.rgb;
-        if (SaveManager.saveData.graphic.texture != null) {
-            graphic.SetTexture("_BaseMap", SaveManager.saveData.graphic.texture);
+        deck.color = shopItemsSO[SaveManager.saveData.deck].rgb;
+        trucks.color = shopItemsSO[SaveManager.saveData.trucks].rgb;
+        wheels.color = shopItemsSO[SaveManager.saveData.wheels].rgb;
+        if (shopItemsSO[SaveManager.saveData.graphic].texture != null) {
+            graphic.SetTexture("_BaseMap", shopItemsSO[SaveManager.saveData.graphic].texture);
             graphic.color = Color.white;
         } else {
             graphic.color = new Color(0, 0, 0, 0);
@@ -89,49 +90,49 @@ public class ShopManager : MonoBehaviour {
     public void PurchaseItem(ShopItemSO shopItem) {
 
         bool hasItem = false;
-        foreach (ShopItemSO so in SaveManager.saveData.ownedItems) {
-            if (shopItem.label == so.label) hasItem = true;
+        foreach (int i in SaveManager.saveData.ownedItems) {
+            if (shopItem.label == shopItemsSO[i].label) hasItem = true;
 
         }
 
         if (hasItem) {
             if (shopItem.type == "deck") {
-                SaveManager.saveData.deck = shopItem;
+                SaveManager.saveData.deck = Array.IndexOf(shopItemsSO ,shopItem);
             } else if (shopItem.type == "trucks") {
-                SaveManager.saveData.trucks = shopItem;
+                SaveManager.saveData.trucks = Array.IndexOf(shopItemsSO, shopItem);
             } else if (shopItem.type == "wheels") {
-                SaveManager.saveData.wheels = shopItem;
+                SaveManager.saveData.wheels = Array.IndexOf(shopItemsSO, shopItem);
             } else if (shopItem.type == "graphic") {
-                SaveManager.saveData.graphic = shopItem;
+                SaveManager.saveData.graphic = Array.IndexOf(shopItemsSO, shopItem);
             }
 
         } else if (SaveManager.saveData.coins >= shopItem.cost) {
             SaveManager.saveData.coins -= shopItem.cost;
-            SaveManager.saveData.ownedItems.Add(shopItem);
+            SaveManager.saveData.ownedItems.Add(Array.IndexOf(shopItemsSO, shopItem));
             if (shopItem.type == "deck") {
-                SaveManager.saveData.deck = shopItem;
+                SaveManager.saveData.deck = Array.IndexOf(shopItemsSO, shopItem); ;
             }
             else if (shopItem.type == "trucks") {
-                SaveManager.saveData.trucks = shopItem;
+                SaveManager.saveData.trucks = Array.IndexOf(shopItemsSO, shopItem);
             }
             else if (shopItem.type == "wheels") {
-                SaveManager.saveData.wheels = shopItem;
+                SaveManager.saveData.wheels = Array.IndexOf(shopItemsSO, shopItem);
             } else if (shopItem.type == "graphic") {
-                SaveManager.saveData.graphic = shopItem;
+                SaveManager.saveData.graphic = Array.IndexOf(shopItemsSO, shopItem);
             }
         }
         SaveManager.Save();
         RefreshUI();
     }
 
-    public void InitializeSave(SaveData save) {
+    /*public void InitializeSave(SaveData save) {
         save.ownedItems.Add(shopItemsSO[0]);
         save.deck = shopItemsSO[0];
         save.ownedItems.Add(shopItemsSO[1]);
         save.deck = shopItemsSO[1];
         save.ownedItems.Add(shopItemsSO[2]);
         save.deck = shopItemsSO[2];
-    }
+    }*/
 
     /*public IEnumerator takeShopImage() {
         for (int i = 0; i < shopItemsGFX.Length; i++) {

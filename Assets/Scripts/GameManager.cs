@@ -85,6 +85,8 @@ public class GameManager : MonoBehaviour {
     }  
     
     public void PlayerDeath() {
+        if (PowerupManager.Instance.hasShield) return;
+
         isAlive = false;
         
         SaveManager.saveData.coins+=coins;

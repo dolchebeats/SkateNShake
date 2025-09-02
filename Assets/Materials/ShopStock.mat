@@ -25,7 +25,9 @@ Material:
   m_Parent: {fileID: 2100000, guid: 63f08871c651c24468c71d21f3f2fd2f, type: 2}
   m_ModifiedSerializedProperties: 4
   m_ValidKeywords:
+  - _GLOSSINESS_FROM_BASE_ALPHA
   - _RECEIVE_SHADOWS_OFF
+  - _SPECULAR_COLOR
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
@@ -43,7 +45,7 @@ Material:
     m_Floats:
     - _ReceiveShadows: 0
     m_Colors:
-    - _BaseColor: {r: 0.8784314, g: 0.83987486, b: 0.06274505, a: 0}
-    - _Color: {r: 0.8784314, g: 0.83987486, b: 0.06274503, a: 0}
+    - _BaseColor: {r: 0.8784314, g: 0.83987486, b: 0.06274503, a: 0.483}
+    - _Color: {r: 0.8784314, g: 0.83987486, b: 0.062745005, a: 0.483}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

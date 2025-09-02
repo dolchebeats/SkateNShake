@@ -73,7 +73,7 @@ public class TrickManager : MonoBehaviour {
 
     // Called by SwipeManager
     private void HandleSwipe(Swipe swipe, Vector2 velocity) {
-        if (!GameManager.Instance.isGameStarted) return;
+        if (!GameManager.Instance.isGameStarted||!GameManager.Instance.isAlive) return;
         if (PlayerMovement.Instance.isGrounded() || PlayerMovement.Instance.isGrinding || PlayerMovement.Instance.isKicking) {
             if (trickTable.TryGetValue(swipe, out var trickData)) {
                 CurrentTrick = SaveManager.saveData.level >= trickData.requiredLevel

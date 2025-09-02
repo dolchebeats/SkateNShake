@@ -116,7 +116,7 @@ public class PowerupManager : MonoBehaviour
 
     public IEnumerator Shield() {
         hasShield = true;
-        GameManager.Instance.isAlive = false;
+        //GameManager.Instance.isAlive = false;
         UIManager.Instance.sliderShield.gameObject.GetComponent<Slider>().value = 15;
         UIManager.Instance.sliderShield.gameObject.SetActive(true);
         //yield return new WaitForSeconds(15);
@@ -126,7 +126,7 @@ public class PowerupManager : MonoBehaviour
             timerShield--;
             UIManager.Instance.sliderShield.gameObject.GetComponent<Slider>().value = timerShield;
         }
-        GameManager.Instance.isAlive = true;
+        //GameManager.Instance.isAlive = true;
         UIManager.Instance.sliderShield.gameObject.SetActive(false);
         hasShield = false;
     }

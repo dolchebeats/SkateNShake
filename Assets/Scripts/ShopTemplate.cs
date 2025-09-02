@@ -23,8 +23,8 @@ public class ShopTemplate : MonoBehaviour
             buyBtn.interactable = false;
         }
         bool hasItem=false;
-        foreach (ShopItemSO so in SaveManager.saveData.ownedItems) {
-            if(shopItem.label == so.label) hasItem = true;
+        foreach (int i in SaveManager.saveData.ownedItems) {
+            if(shopItem.label == ShopManager.Instance.shopItemsSO[i].label) hasItem = true;
 
         }
         if (hasItem) {
@@ -32,9 +32,9 @@ public class ShopTemplate : MonoBehaviour
             buyBtn.interactable = true;
         }
 
-        if (shopItem.label == SaveManager.saveData.deck.label||
-            shopItem.label == SaveManager.saveData.trucks.label ||
-            shopItem.label == SaveManager.saveData.wheels.label) {
+        if (shopItem.label == ShopManager.Instance.shopItemsSO[SaveManager.saveData.deck].label||
+            shopItem.label == ShopManager.Instance.shopItemsSO[SaveManager.saveData.trucks].label ||
+            shopItem.label == ShopManager.Instance.shopItemsSO[SaveManager.saveData.wheels].label) {
             cost.text = "USING";
             buyBtn.interactable = false;
         }

@@ -6,7 +6,7 @@ public class SunRotation : MonoBehaviour {
 
     private void Start() {
         // Pick a random starting X rotation
-        currentRotationX = 100;
+        currentRotationX = 90;
 
         // Ensure Y matches this X right from the start
         UpdateRotation();
