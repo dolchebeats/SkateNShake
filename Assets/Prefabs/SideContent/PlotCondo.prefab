@@ -196,6 +196,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 91.424
       objectReference: {fileID: 0}
+    - target: {fileID: 3788404290045297762, guid: 6f17e8db777331b4e93d8a3cfc4ca916, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c154923cfc4637044898e9f383eb1234, type: 2}
     - target: {fileID: 6472848325973780410, guid: 6f17e8db777331b4e93d8a3cfc4ca916, type: 3}
       propertyPath: m_Name
       value: Plane.017
@@ -320,6 +324,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
       objectReference: {fileID: 0}
+    - target: {fileID: 7422696565067413581, guid: cf58de7f80b14fc4f9086391294280d8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c154923cfc4637044898e9f383eb1234, type: 2}
     - target: {fileID: 8741954317108663589, guid: cf58de7f80b14fc4f9086391294280d8, type: 3}
       propertyPath: m_Name
       value: Condo.002

@@ -1525,6 +1525,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5352644594884499160}
     m_Modifications:
+    - target: {fileID: 3304723320772026797, guid: f5e3fc8c632da73478e5228d2258b347, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c154923cfc4637044898e9f383eb1234, type: 2}
     - target: {fileID: 3813202950659376264, guid: f5e3fc8c632da73478e5228d2258b347, type: 3}
       propertyPath: m_Name
       value: polleria

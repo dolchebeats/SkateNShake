@@ -1267,6 +1267,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pizzeria
       objectReference: {fileID: 0}
+    - target: {fileID: 6457149483673796375, guid: eb8cdda01fcd1ec4b89b2699d8ed4c12, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c154923cfc4637044898e9f383eb1234, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -3,7 +3,32 @@ guid: 453d89ef2574bf24e937f8534ab4274a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bricks
+    second: {fileID: 2100000, guid: b74b17a671dcdb7419ec03257dc62ae3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door
+    second: {fileID: 2100000, guid: 7775991aa8dffa446b6bad220935b266, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Windows
+    second: {fileID: 2100000, guid: 0b1d5ebb9ff3731429cb97cd43464641, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: 77bd260bf709eb840b94e0a61d8eb0ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodPlanks
+    second: {fileID: 2100000, guid: ec00b89781035ba43a745a15c3e70c2b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

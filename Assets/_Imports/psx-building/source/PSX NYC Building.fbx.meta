@@ -3,7 +3,72 @@ guid: a321ea95f83cdbd4fb3bb4b3aac2aaad
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AirCondenser
+    second: {fileID: 2100000, guid: ee7e120c98b47314bae1ebad57a3cbb7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bricks
+    second: {fileID: 2100000, guid: 626246c58d6f00a4bbcdfe746cd9ce11, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Concrete#2
+    second: {fileID: 2100000, guid: 9b15c72e77606ab43890a67bbccfe030, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door
+    second: {fileID: 2100000, guid: 95ac4b11aea18b445b163a1fbbd7efd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rollup Door
+    second: {fileID: 2100000, guid: dc7821a40f16f1842be81a93d9d35e65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof
+    second: {fileID: 2100000, guid: b1a57f783b385644e9c75960403bdcb7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shop#1
+    second: {fileID: 2100000, guid: 07019b1b637f23b41a1209bf93e4be47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shop#2
+    second: {fileID: 2100000, guid: 2292435bcf41ffb49ad09f09b67e3116, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shop#3
+    second: {fileID: 2100000, guid: 1ba69342fc9244446ad113dd406f3d89, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sign
+    second: {fileID: 2100000, guid: a85c0803efc16ea4c8292adefb1773c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Store Door
+    second: {fileID: 2100000, guid: c472eb41e4d05ea4b974c333a31e5528, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trim
+    second: {fileID: 2100000, guid: e412c92904d32084aa2c3c7aa382380c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window
+    second: {fileID: 2100000, guid: 59e4e983719c45d4496d0a9dba5fef11, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

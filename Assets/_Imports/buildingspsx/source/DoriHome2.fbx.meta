@@ -3,7 +3,42 @@ guid: a4fc6d9fd7013b848af94d2c7fd090f6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: atals_street
+    second: {fileID: 2100000, guid: c2827d777d724204798a7062e2127cdc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: atlas_facade
+    second: {fileID: 2100000, guid: cf44fac4a02ad2f48934ad5e649386e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: atlas_facade2
+    second: {fileID: 2100000, guid: c154923cfc4637044898e9f383eb1234, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: concrete3
+    second: {fileID: 2100000, guid: dd520755415745844b03ab518b6a4d09, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: emitYELL
+    second: {fileID: 2100000, guid: b9e2ba79a2de37a4d8903e92d5340434, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glasss
+    second: {fileID: 2100000, guid: 80d4e20bb648c4b4d88a4cd83adaa71b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: grass
+    second: {fileID: 2100000, guid: acef284ebace33945853c6291a82a989, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

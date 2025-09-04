@@ -1593,6 +1593,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Condo.001
       objectReference: {fileID: 0}
+    - target: {fileID: 2882032553099450083, guid: fd7d853284398e744b1ae231f7c81413, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c154923cfc4637044898e9f383eb1234, type: 2}
     - target: {fileID: 8278517759678132109, guid: fd7d853284398e744b1ae231f7c81413, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.54

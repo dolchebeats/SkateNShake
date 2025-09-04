@@ -3,72 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlotSpawner : MonoBehaviour {
-    private int initAmount = 5;
+    private int initAmount = 2;
     private float plotSize = 56f;
     private float lastZPos = 27.5f;
     public Transform player;
+    private float despawnDistance = 30f;
 
-    [Header("Themed Plot Lists")]
-    public List<GameObject> naturePlots;
-    public List<GameObject> suburbsPlots;
-    public List<GameObject> townPlots;
-
-    public List<GameObject> cityPlots;
-    public List<GameObject> downtownPlots;
-
-    private List<List<GameObject>> allThemes = new List<List<GameObject>>();
-    private Dictionary<int, Queue<GameObject>> pooledPlots = new Dictionary<int, Queue<GameObject>>();
-    private Queue<GameObject> activePlots = new Queue<GameObject>();
-
-    // NEW: map active plots to their theme
-    private Dictionary<GameObject, int> plotThemeLookup = new Dictionary<GameObject, int>();
-
-    private int maxActivePlots = 10;
-    private int spawnCounter = 0;
-    public int currentThemeIndex = 0;
-
+    private List<GameObject> activePlots = new List<GameObject>();
     void Start() {
         player = GameManager.Instance.transform;
 
-        allThemes.Add(naturePlots);
-        allThemes.Add(suburbsPlots);
-        allThemes.Add(townPlots);
-        allThemes.Add(cityPlots);
-        allThemes.Add(downtownPlots);
-        currentThemeIndex = Random.Range(0, allThemes.Count);
-        for (int i = 0; i < allThemes.Count; i++) {
-            pooledPlots[i] = new Queue<GameObject>();
-        }
 
         for (int i = 0; i < initAmount; i++) {
-            SpawnPlot();
+            SpawnPlot(SpawnManager.Instance.CurrentThemeIndex);
         }
     }
 
     void Update() {
-        if (activePlots.Count > 0) {
-            GameObject oldestPlot = activePlots.Peek();
-            if (player.position.z - oldestPlot.transform.position.z > plotSize * 2) {
-                RecyclePlot();
-            }
-        }
-
-        while (activePlots.Count < maxActivePlots) {
-            SpawnPlot();
-        }
+        DespawnBehindPlayer();
     }
 
-    public void SpawnPlot() {
-        spawnCounter++;
+    public void SpawnPlot(int themeIndex) {
+        List<GameObject> theme = SpawnManager.Instance.themes[themeIndex].plots;
 
-        if (spawnCounter % 5 == 0) {
-            currentThemeIndex = Random.Range(0, allThemes.Count);
-        }
-
-        List<GameObject> theme = allThemes[currentThemeIndex];
-
-        GameObject plotLeft = GetPlotFromPool(theme, currentThemeIndex);
-        GameObject plotRight = GetPlotFromPool(theme, currentThemeIndex);
+        GameObject plotLeft = Instantiate(theme[Random.Range(0, theme.Count)]);
+        GameObject plotRight = Instantiate(theme[Random.Range(0, theme.Count)]);
 
         float zPos = lastZPos + plotSize;
         plotLeft.transform.position = new Vector3(0, 0, zPos);
@@ -79,36 +38,21 @@ public class PlotSpawner : MonoBehaviour {
         plotRight.transform.rotation = Quaternion.Euler(0, 180, 0);
         plotRight.SetActive(true);
 
-        activePlots.Enqueue(plotLeft);
-        activePlots.Enqueue(plotRight);
-
-        // track which theme these plots belong to
-        plotThemeLookup[plotLeft] = currentThemeIndex;
-        plotThemeLookup[plotRight] = currentThemeIndex;
+        activePlots.Add(plotLeft);
+        activePlots.Add(plotRight);
 
         lastZPos += plotSize;
     }
 
-    private GameObject GetPlotFromPool(List<GameObject> theme, int themeIndex) {
-        if (pooledPlots[themeIndex].Count > 0) {
-            return pooledPlots[themeIndex].Dequeue();
-        }
-        else {
-            return Instantiate(theme[Random.Range(0, theme.Count)]);
+    private void DespawnBehindPlayer() {
+        for (int i = activePlots.Count - 1; i >= 0; i--) {
+            if (activePlots[i] != null &&
+                activePlots[i].transform.position.z < player.position.z - despawnDistance) {
+
+                Destroy(activePlots[i]); // or SetActive(false) if pooling
+                activePlots.RemoveAt(i);
+            }
         }
     }
 
-    private void RecyclePlot() {
-        GameObject oldPlot = activePlots.Dequeue();
-        oldPlot.SetActive(false);
-
-        // find which theme this plot belonged to
-        if (plotThemeLookup.TryGetValue(oldPlot, out int themeIndex)) {
-            pooledPlots[themeIndex].Enqueue(oldPlot);
-        }
-        else {
-            // fallback: just dump it into current theme pool
-            pooledPlots[currentThemeIndex].Enqueue(oldPlot);
-        }
-    }
 }
