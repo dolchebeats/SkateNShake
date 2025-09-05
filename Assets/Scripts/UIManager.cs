@@ -31,11 +31,7 @@ public class UIManager : MonoBehaviour
     public Slider levelBar;
     public TMP_Text levelBarText;
 
-    public GameObject sliderJumpBoost;
-    public GameObject sliderCoin3x;
-    public GameObject sliderStopwatch;
-    public GameObject sliderShield;
-
+  
     public void Initialize() {
         startScore.text = "COINS: " + SaveManager.saveData.coins + " COINS\nHIGH SCORE: " + SaveManager.saveData.highScore;
         startPanel.SetActive(true);
