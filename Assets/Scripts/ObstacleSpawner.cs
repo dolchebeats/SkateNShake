@@ -8,7 +8,7 @@ public class ObstacleSpawner : MonoBehaviour {
     private float plotSize = 14f;
     private float lastZPos = 21f; // 7 + 14
     [SerializeField] private float despawnDistance = 20f;
-    [SerializeField] private Transform player;
+    private Transform player;
     private List<GameObject> activeObstacles = new List<GameObject>();
 
     void Start() {

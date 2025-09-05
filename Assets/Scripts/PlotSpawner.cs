@@ -6,8 +6,8 @@ public class PlotSpawner : MonoBehaviour {
     private int initAmount = 2;
     private float plotSize = 56f;
     private float lastZPos = 27.5f;
-    public Transform player;
-    private float despawnDistance = 30f;
+    Transform player;
+    [SerializeField] float despawnDistance = 30f;
 
     private List<GameObject> activePlots = new List<GameObject>();
     void Start() {

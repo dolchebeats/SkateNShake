@@ -13,8 +13,8 @@ public class StatsMenuManager : MonoBehaviour
             "\nCoins: " + SaveManager.saveData.coins +
             "\nTotal Wealth: " + SaveManager.saveData.totalWealth +
             "\nShop Items Owned: " + SaveManager.saveData.ownedItems.Count +
-            "\nLongest Distance: " + SaveManager.saveData.longestDistance +
-            "\nTotal Distance: " + SaveManager.saveData.totalDistance +
+            "\nLongest Distance: " + SaveManager.saveData.longestDistance + "m" +
+            "\nTotal Distance: " + SaveManager.saveData.totalDistance + "m" +
             "\nTricks Done: " + SaveManager.saveData.tricksDone;
     }
 }
