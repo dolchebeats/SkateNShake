@@ -19,6 +19,7 @@ public class AnimationManager : MonoBehaviour {
     public Animator cameraAnim;
     public Animator fryAnim;
     public Animator skateAnim;
+    public Animator springAnim;
 
     public float normalSpeed = 1f;
     public float jumpBoostSpeed = 0.5f;
@@ -76,11 +77,13 @@ public class AnimationManager : MonoBehaviour {
 
         skateAnim.SetTrigger(trick); // assumes trigger names match trick strings
         fryAnim.SetTrigger("Jump");
+        springAnim.SetTrigger("Jump");
 
     }
     public void JumpAnimation(string trick) {
         skateAnim.SetTrigger(trick);
         fryAnim.SetTrigger("Jump");
+        springAnim.SetTrigger("Jump");
     }
 
 

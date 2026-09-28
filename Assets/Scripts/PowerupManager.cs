@@ -60,6 +60,11 @@ public class PowerupManager : MonoBehaviour
     public int timerCoin3x;
     public int timerStopwatch;
     public int timerShield;
+    public GameObject springModel;
+    public GameObject coin3xModel;
+    public GameObject shieldModel;
+
+    public Animator stopwatchAnim;
     private Dictionary<string, GameObject> activeIcons = new Dictionary<string, GameObject>();
     [SerializeField] GameObject iconPrefab;
     [SerializeField] Transform powerupPanel;
@@ -67,8 +72,9 @@ public class PowerupManager : MonoBehaviour
     public IEnumerator Stopwatch() {
         hasStopwatch = true;
         StartCoroutine(RunPowerupIcon("Stopwatch", stopwatchSprite, 7.5f));
-
+        stopwatchAnim.SetBool("isStopwatch", true);
         Time.timeScale = 0.5f;
+        
         AudioManager.Instance.ChangePitch(0.5f);
         //yield return new WaitForSeconds(7.5f);
         timerStopwatch = 15;
@@ -81,7 +87,7 @@ public class PowerupManager : MonoBehaviour
             Time.timeScale = 1f;
             AudioManager.Instance.ChangePitch(1f);
         }
-
+        stopwatchAnim.SetBool("isStopwatch", false); ;
         hasStopwatch = false;
     }
 
@@ -104,6 +110,7 @@ public class PowerupManager : MonoBehaviour
     public IEnumerator JumpBoost() {
         StartCoroutine(RunPowerupIcon("JumpBoost", jumpboostSprite, 15f));
         hasJumpBoost = true;
+        springModel.SetActive(hasJumpBoost);
         PlayerMovement.Instance.jumpForce = 18f;
 
         //yield return new WaitForSeconds(15);
@@ -116,10 +123,12 @@ public class PowerupManager : MonoBehaviour
         PlayerMovement.Instance.jumpForce = 12f;
 
         hasJumpBoost = false;
+        springModel.SetActive(hasJumpBoost);
     }
 
     public IEnumerator Shield() {
         hasShield = true;
+        shieldModel.SetActive(hasShield);
         StartCoroutine(RunPowerupIcon("Shield", shieldSprite, 15f));
         //GameManager.Instance.isAlive = false;
 
@@ -133,6 +142,7 @@ public class PowerupManager : MonoBehaviour
         //GameManager.Instance.isAlive = true;
 
         hasShield = false;
+        shieldModel.SetActive(hasShield);
     }
 
     public IEnumerator RunPowerupIcon(string powerupTag, Sprite iconSprite, float duration) {

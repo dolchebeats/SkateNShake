@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 536372c49e1ca914d822849d36de938c, type: 3}
+  m_Script: {fileID: 21001, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Android Providers
   m_EditorClassIdentifier: 
-  m_InitializationComplete: 0
   m_AutomaticLoading: 0
   m_AutomaticRunning: 0
   m_Loaders: []
@@ -25,13 +24,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb0ece14d1f711a4fb9325ca819dee95, type: 3}
+  m_Script: {fileID: 21010, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: AdaptivePerformanceGeneralSettings
   m_EditorClassIdentifier: 
   Keys: 0700000004000000
   Values:
   - {fileID: 5704458358032336778}
   - {fileID: 8822200146361257821}
+  m_EnableAdaptivePerformance: 1
+  m_Version: 6000.3
 --- !u!114 &2702380250382213944
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -41,10 +42,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 536372c49e1ca914d822849d36de938c, type: 3}
+  m_Script: {fileID: 21001, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: iPhone Providers
   m_EditorClassIdentifier: 
-  m_InitializationComplete: 0
   m_AutomaticLoading: 0
   m_AutomaticRunning: 0
   m_Loaders: []
@@ -57,14 +57,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 179fc3111e144bc4688dca4038b3265d, type: 3}
+  m_Script: {fileID: 21000, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Android Settings
   m_EditorClassIdentifier: 
   m_LoaderManagerInstance: {fileID: -5999033392538644780}
   m_InitManagerOnStart: 0
-  m_AdaptivePerformanceManager: {fileID: 0}
-  m_ProviderIntialized: 0
-  m_ProviderStarted: 0
+  m_LastSelectedProvider: 
 --- !u!114 &8822200146361257821
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -74,11 +72,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 179fc3111e144bc4688dca4038b3265d, type: 3}
+  m_Script: {fileID: 21000, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: iPhone Settings
   m_EditorClassIdentifier: 
   m_LoaderManagerInstance: {fileID: 2702380250382213944}
   m_InitManagerOnStart: 0
-  m_AdaptivePerformanceManager: {fileID: 0}
-  m_ProviderIntialized: 0
-  m_ProviderStarted: 0
+  m_LastSelectedProvider: 
